@@ -1,7 +1,22 @@
+# dependencies and build output
 node_modules
 dist
+
+# secrets: Vercel login token (.env.local) and project link (.vercel)
+.env*
+.vercel
+
+# local tools and generated files
 .superpowers
 scripts/lines.json
+__pycache__/
+*.pyc
 *.log
-.vercel
-.env*
+*.part
+
+# editor and operating system files
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
