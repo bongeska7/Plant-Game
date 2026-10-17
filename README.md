@@ -14,12 +14,10 @@ To start over, **press and hold** the round arrow button in the bottom-left of t
 
 ## Put it online (Vercel)
 
-```bash
-npx vercel --prod
-```
+Live at **https://pips-magic-garden.vercel.app**. The code lives at https://github.com/bongeska7/Plant-Game.
 
-The first time, it asks you to log in to Vercel in the browser. Accept the detected settings (Vite).
-It prints the web address to open on the smartboard.
+The Vercel project is connected to that GitHub repo: every push to `main` rebuilds and updates the live site
+automatically (about a minute). Nothing else to run.
 
 ## Change the lesson
 
