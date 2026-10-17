@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Pip and the Gray Fog</title>
+  <meta name="description" content="A plant parts adventure for grade 1: seeds, roots, stems, leaves, flowers, and fruits.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="world" aria-hidden="true"></div>
+  <div id="fog" aria-hidden="true">
+    <i class="fog-blob" style="left:-10%;top:5%"></i>
+    <i class="fog-blob" style="left:35%;top:-8%;animation-delay:-6s"></i>
+    <i class="fog-blob" style="left:60%;top:20%;animation-delay:-12s"></i>
+    <i class="fog-blob" style="left:-5%;top:45%;animation-delay:-3s"></i>
+    <i class="fog-blob" style="left:30%;top:55%;animation-delay:-9s"></i>
+    <i class="fog-blob" style="left:65%;top:60%;animation-delay:-15s"></i>
+  </div>
+
+  <main id="stage">
+    <!-- always-visible teacher controls -->
+    <div id="controls">
+      <button class="icon-btn" id="btn-sound" aria-label="Turn sound off">
+        <svg class="ico-on" viewBox="0 0 48 48"><path d="M8 18h8l10-8v28l-10-8H8z" fill="#2E1F47"/><path d="M32 17c3 2 4 4.5 4 7s-1 5-4 7M36 11c5 3.5 7 8 7 13s-2 9.5-7 13" fill="none" stroke="#2E1F47" stroke-width="4" stroke-linecap="round"/></svg>
+        <svg class="ico-off" viewBox="0 0 48 48"><path d="M8 18h8l10-8v28l-10-8H8z" fill="#2E1F47"/><path d="M33 18l12 12M45 18L33 30" stroke="#2E1F47" stroke-width="4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-full" aria-label="Full screen">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#2E1F47" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18V8h10M30 8h10v10M40 30v10H30M18 40H8V30"/></svg>
+      </button>
+    </div>
+
+    <!-- title -->
+    <section class="screen on" id="title">
+      <h1 class="logo"><span class="l1">Pip</span><span class="l2">and the Gray Fog</span></h1>
+      <div class="pip" id="pip-title"></div>
+      <div class="bubble bubble-left" id="bubble-title"></div>
+      <div class="title-actions">
+        <button class="btn" id="btn-play">Play</button>
+        <button class="link-btn" id="btn-reset">Start over</button>
+      </div>
+    </section>
+
+    <!-- garden map -->
+    <section class="screen" id="map">
+      <div class="sign"><span class="sign-title">Pip's garden</span><span class="sign-progress" id="sign-progress"></span></div>
+      <svg id="trail" viewBox="0 0 1600 900" aria-hidden="true"></svg>
+      <div id="stops"></div>
+      <div class="pip" id="pip-map"></div>
+      <div class="bubble bubble-left" id="bubble-map"></div>
+    </section>
+
+    <!-- question screen -->
+    <section class="screen" id="play">
+      <header class="topbar">
+        <button class="icon-btn" id="btn-home" aria-label="Back to the map">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#2E1F47" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 23L24 8l17 15"/><path d="M12 20v19h9V28h6v11h9V20" fill="#FFC93C"/></svg>
+        </button>
+        <div class="chapter-tag" id="chapter-tag"></div>
+        <div class="dots" id="dots"></div>
+      </header>
+      <div class="prompt">
+        <button class="say-btn" id="btn-say" aria-label="Hear it again">
+          <svg viewBox="0 0 48 48"><path d="M8 18h8l10-8v28l-10-8H8z" fill="#fff" stroke="#2E1F47" stroke-width="3" stroke-linejoin="round"/><path d="M32 17c3 2 4 4.5 4 7s-1 5-4 7M36 11c5 3.5 7 8 7 13s-2 9.5-7 13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+        </button>
+        <p id="prompt-text"></p>
+        <div id="meter"></div>
+      </div>
+      <div class="act" id="act"></div>
+      <div class="guide">
+        <div class="bubble" id="bubble"></div>
+        <div class="pip" id="pip"></div>
+      </div>
+      <button class="btn btn-go next-btn" id="btn-next">Next
+        <svg viewBox="0 0 48 48" fill="none" stroke="#2E1F47" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24h26M26 12l12 12-12 12"/></svg>
+      </button>
+    </section>
+
+    <!-- part finished -->
+    <section class="screen" id="done">
+      <div class="done-card">
+        <div class="done-badge" id="done-badge"></div>
+        <h2 class="done-title" id="done-title"></h2>
+        <p class="done-text" id="done-text"></p>
+        <button class="btn" id="btn-map">Back to the map</button>
+      </div>
+      <div class="pip" id="pip-done"></div>
+    </section>
+
+    <!-- whole game finished -->
+    <section class="screen" id="final">
+      <div class="award">
+        <h2 class="award-title">Garden Hero!</h2>
+        <p class="award-text">You know all the parts of a plant.</p>
+        <div class="award-badges" id="award-badges"></div>
+        <div class="award-actions">
+          <button class="btn btn-go" id="btn-again">Play again</button>
+          <button class="btn" id="btn-final-map">Garden map</button>
+        </div>
+      </div>
+      <div class="pip" id="pip-final"></div>
+    </section>
+
+    <div id="fx" aria-hidden="true"></div>
+  </main>
+
+  <script src="js/art.js"></script>
+  <script src="js/lesson.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
